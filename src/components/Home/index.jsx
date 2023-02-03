@@ -1,10 +1,12 @@
 import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import Navbar from '../Navbar';
 
 const Home = () => {
     return (
         <>
-            <div className=" flex md:flex-row flex-col justify-between bg-gray-900">
+            <Navbar />
+            <div className=" flex md:flex-row flex-col justify-between ">
                 <aside
 
 

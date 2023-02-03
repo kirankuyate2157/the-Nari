@@ -1,31 +1,29 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import account from "../../services/appwriteConfig";
 import logo from "../nari.png";
 import nariName from "../NariName.png";
 
 export default function Login({ isOpen, setIsOpen }) {
-    const [userData, setUserData] = useState({
-        email: "",
-        password: "",
-    });
-
-    // const dispatch = useDispatch();
+    const [userData, setUserData] = useState();
 
     const handleChange = (e) =>
         setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-    // function closeModal() {
-    //     setIsOpen(false);
-    // }
 
-    // const submit = () => {
-    //     setUserData({
-    //         email: "",
-    //         password: "",
-    //     });
-    //     dispatch(Login(userData));
-    // };
+    const Submit = (e) => {
+        e.preventDefault();
+        useEffect(async () => {
+            try {
+                const data = await account.get();
+                console.log(data);
+            } catch (e) {
+                console.error(e);
+            }
+        });
+
+    };
 
     // const googleLogin = () =>
     //     (window.location.href = "http://localhost:5000/auth/google");
@@ -79,7 +77,7 @@ export default function Login({ isOpen, setIsOpen }) {
                                 />
                             </div>
                             <div
-                                // onClick={submit}
+                                onClick={(e) => { Submit(e) }}
                                 className="w-full  text-center bg-bcc-500 text-white border border-gray-500  hover:bg-bcc-700 py-2 rounded-xl"
                             >
                                 Sign In

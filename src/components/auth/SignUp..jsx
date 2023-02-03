@@ -1,13 +1,22 @@
 
+import { ID } from "appwrite";
 import React, { useState } from "react";
+
 import { FcGoogle } from "react-icons/fc";
+import account from "../../services/appwriteConfig";
 import logo from "../nari.png";
 import nariName from "../NariName.png";
 
+
+
+
+
 export default function SignUp({ isOpen, setIsOpen }) {
     const [userData, setUserData] = useState({
+        userName: "",
         email: "",
         password: "",
+
     });
 
     // const dispatch = useDispatch();
@@ -19,13 +28,31 @@ export default function SignUp({ isOpen, setIsOpen }) {
     //     setIsOpen(false);
     // }
 
-    // const submit = () => {
-    //     setUserData({
-    //         email: "",
-    //         password: "",
-    //     });
-    //     dispatch(SignUp(userData));
-    // };
+    const submit = async (e) => {
+        e.preventDefault();
+        try {
+            const promise = await account.create(
+                ID.unique(),
+                userData.email,
+                userData.password,
+                userData.userName,
+            );
+
+            // promise.then(function (response) {
+            //     console.log(response); // Success
+            // }, function (error) {
+            //     console.log(error); // Failure
+            // });
+        } catch (error) {
+            console.log("external problem...")
+        }
+
+        setUserData({
+            userName: "",
+            email: "",
+            password: "",
+        });
+    };
 
     // const googleLogin = () =>
     //     (window.location.href = "http://localhost:5000/auth/google");
@@ -58,6 +85,18 @@ export default function SignUp({ isOpen, setIsOpen }) {
 
                                 <input
                                     type="text"
+                                    id="userName"
+                                    name="userName"
+                                    onChange={handleChange}
+                                    value={userData.userName}
+                                    placeholder="userName.."
+                                    className="w-full border border-bcc-500 px-3 py-2 rounded-xl focus:outline-none focus:border-zomato-500"
+                                />
+                            </div>
+                            <div className=" w-full flex flex-col gap-2">
+
+                                <input
+                                    type="text"
                                     id="email"
                                     name="email"
                                     onChange={handleChange}
@@ -78,12 +117,12 @@ export default function SignUp({ isOpen, setIsOpen }) {
                                     className="w-full border border-bcc-500 px-3 py-2 rounded-xl focus:outline-none focus:border-zomato-500"
                                 />
                             </div>
-                            <div
-                                // onClick={submit}
+                            <button
+                                onClick={(e) => submit(e)}
                                 className="w-full  text-center bg-bcc-500 text-white border border-gray-500  hover:bg-bcc-700 py-2 rounded-xl"
                             >
                                 Sign Up
-                            </div>
+                            </button>
                             <button
                                 // onClick={googleLogin}
                                 className="py-2 justify-center   bg-bcc-500 text-white rounded-xl flex items-center gap-2 w-full border border-bcc-500  hover:bg-bcc-700"

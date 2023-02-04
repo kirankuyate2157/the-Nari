@@ -1,12 +1,22 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import account from "../../services/appwriteConfig";
+import { useNavigate } from "react-router";
+import { getUserData, GoggleAuth, login } from "../../services/appwriteConfig";
 import logo from "../nari.png";
 import nariName from "../NariName.png";
 
-export default function Login({ isOpen, setIsOpen }) {
-    const [userData, setUserData] = useState();
+
+
+
+export default function Login() {
+    const navigate = useNavigate();
+
+    const [log, setLog] = useState();
+    const [userData, setUserData] = useState({
+        email: "",
+        password: "",
+    });
 
     const handleChange = (e) =>
         setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -14,19 +24,34 @@ export default function Login({ isOpen, setIsOpen }) {
 
     const Submit = (e) => {
         e.preventDefault();
-        useEffect(async () => {
-            try {
-                const data = await account.get();
-                console.log(data);
-            } catch (e) {
-                console.error(e);
-            }
-        });
 
-    };
+        if (!userData.email) {
+            alert("Email is required !");
+        }
+        if (!userData.password) {
+            alert("Password is required !");
+        }
 
-    // const googleLogin = () =>
-    //     (window.location.href = "http://localhost:5000/auth/google");
+        const status = login(userData.email, userData.password);
+        if (status) {
+            alert('Login successful!');
+            navigate('/home');
+        }
+        const data = getUserData();
+        setLog(data);
+
+        console.log(log);
+    }
+
+
+    const googleLogin = (e) => {
+        e.preventDefault();
+        GoggleAuth(
+            "http://localhost:3000/home",
+            "http://localhost:3000/signin"
+        )
+    }
+
 
     return (
         <>
@@ -58,8 +83,9 @@ export default function Login({ isOpen, setIsOpen }) {
                                     type="text"
                                     id="email"
                                     name="email"
-                                    onChange={handleChange}
                                     value={userData.email}
+                                    onChange={handleChange}
+
                                     placeholder="email.."
                                     className="w-full border border-bcc-500 px-3 py-2 rounded-xl focus:outline-none focus:border-zomato-500"
                                 />
@@ -71,8 +97,9 @@ export default function Login({ isOpen, setIsOpen }) {
                                     id="password"
                                     placeholder="password.."
                                     value={userData.password}
-                                    name="password"
                                     onChange={handleChange}
+                                    name="password"
+
                                     className="w-full border border-bcc-500 px-3 py-2 rounded-xl focus:outline-none focus:border-zomato-500"
                                 />
                             </div>
@@ -83,7 +110,7 @@ export default function Login({ isOpen, setIsOpen }) {
                                 Sign In
                             </div>
                             <button
-                                // onClick={googleLogin}
+                                onClick={(e) => googleLogin(e)}
                                 className="py-2 justify-center   bg-bcc-500 text-white rounded-xl flex items-center gap-2 w-full border border-bcc-500  hover:bg-bcc-700"
                             >
                                 <FcGoogle className="bg-transparent" />

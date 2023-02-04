@@ -1,36 +1,22 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { GoggleAuth } from "../../services/appwriteConfig";
 
 import logo from "../nari.png";
 import nariName from "../NariName.png";
 
-export default function Login({ isOpen, setIsOpen }) {
-    const [userData, setUserData] = useState({
-        email: "",
-        password: "",
-    });
+export default function Login() {
 
-    // const dispatch = useDispatch();
 
-    const handleChange = (e) =>
-        setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-    // function closeModal() {
-    //     setIsOpen(false);
-    // }
-
-    // const submit = () => {
-    //     setUserData({
-    //         email: "",
-    //         password: "",
-    //     });
-    //     dispatch(Login(userData));
-    // };
-
-    // const googleLogin = () =>
-    //     (window.location.href = "http://localhost:5000/auth/google");
+    const googleLogin = (e) => {
+        e.preventDefault();
+        GoggleAuth(
+            "http://localhost:3000/home",
+            "http://localhost:3000"
+        )
+    }
 
     return (
         <>
@@ -73,7 +59,7 @@ export default function Login({ isOpen, setIsOpen }) {
                                 </div></Link>
                             <h1 className="w-full  text-center text-bcc-600 text-xl">Or</h1>
                             <button
-                                // onClick={googleLogin}
+                                onClick={(e) => googleLogin(e)}
                                 className="py-2 justify-center   bg-bcc-500 text-white rounded-xl flex items-center gap-2 w-full border border-bcc-500  hover:bg-bcc-700"
                             >
                                 <FcGoogle className="bg-transparent" />

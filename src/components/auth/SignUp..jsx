@@ -1,9 +1,8 @@
 
-import { ID } from "appwrite";
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import account from "../../services/appwriteConfig";
+import { GoggleAuth, register } from "../../services/appwriteConfig";
 import logo from "../nari.png";
 import nariName from "../NariName.png";
 
@@ -11,7 +10,8 @@ import nariName from "../NariName.png";
 
 
 
-export default function SignUp({ isOpen, setIsOpen }) {
+export default function SignUp() {
+    const navigate = useNavigate();
     const [userData, setUserData] = useState({
         userName: "",
         email: "",
@@ -19,32 +19,27 @@ export default function SignUp({ isOpen, setIsOpen }) {
 
     });
 
-    // const dispatch = useDispatch();
-
     const handleChange = (e) =>
         setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-    // function closeModal() {
-    //     setIsOpen(false);
-    // }
 
     const submit = async (e) => {
         e.preventDefault();
-        try {
-            const promise = await account.create(
-                ID.unique(),
-                userData.email,
-                userData.password,
-                userData.userName,
-            );
 
-            // promise.then(function (response) {
-            //     console.log(response); // Success
-            // }, function (error) {
-            //     console.log(error); // Failure
-            // });
-        } catch (error) {
-            console.log("external problem...")
+        if (userData.email && userData.password && userData.userName) {
+            register(userData.email, userData.password, userData.userName).then((account) => alert(`Successfully created account with ID : ${account.$id}`))
+            navigate('/signin');
+        }
+        else {
+            if (!userData.email) {
+                alert("Email is required !");
+            }
+            if (!userData.password) {
+                alert("Password is required !");
+            }
+            if (userData.password.length < 8) {
+                alert("Password must be at least 8 characters !")
+            }
         }
 
         setUserData({
@@ -52,10 +47,14 @@ export default function SignUp({ isOpen, setIsOpen }) {
             email: "",
             password: "",
         });
-    };
-
-    // const googleLogin = () =>
-    //     (window.location.href = "http://localhost:5000/auth/google");
+    }
+    const googleLogin = (e) => {
+        e.preventDefault();
+        GoggleAuth(
+            "http://localhost:3000/home",
+            "http://localhost:3000/signup"
+        )
+    }
 
     return (
         <>
@@ -96,7 +95,7 @@ export default function SignUp({ isOpen, setIsOpen }) {
                             <div className=" w-full flex flex-col gap-2">
 
                                 <input
-                                    type="text"
+                                    type="email"
                                     id="email"
                                     name="email"
                                     onChange={handleChange}
@@ -124,7 +123,7 @@ export default function SignUp({ isOpen, setIsOpen }) {
                                 Sign Up
                             </button>
                             <button
-                                // onClick={googleLogin}
+                                onClick={(e) => googleLogin(e)}
                                 className="py-2 justify-center   bg-bcc-500 text-white rounded-xl flex items-center gap-2 w-full border border-bcc-500  hover:bg-bcc-700"
                             >
                                 <FcGoogle className="bg-transparent" />

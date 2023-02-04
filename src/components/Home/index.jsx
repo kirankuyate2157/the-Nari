@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import { useNavigate } from 'react-router';
+import { getUserData, logout } from '../../services/appwriteConfig';
 import Navbar from '../Navbar';
 
 const Home = () => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        getUserData()
+            .then((account) => setUser(account))
+            .catch((error) => navigate('/signin'))
+    })
+
+    const endSession = () => {
+        const log = logout();
+        if (log) {
+            alert('LogOut successfully !');
+            navigate('/signin')
+        }
+
+    }
+
     return (
         <>
             <Navbar />
@@ -19,7 +39,7 @@ const Home = () => {
                             <li className="  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl" >Alert</li>
                             <li className="  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl" >Contact</li>
                             <li className="  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl" >Profile</li>
-                            <li className="  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl" >Log Out</li>
+                            <li className="  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl" onClick={() => endSession()}  >Log Out</li>
 
 
                         </ol>
@@ -36,7 +56,7 @@ const Home = () => {
                             <li className="  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl"  >New Worth</li>
                             <li className="  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl"  >Controversy</li>
                             <li className="  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl"  >Awards</li>
-                            <li className="  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl"  >Facts</li>
+                            <button className="  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl"  >Facts</button>
 
                         </ol>
                     </div>

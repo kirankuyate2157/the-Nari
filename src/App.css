@@ -1,0 +1,135 @@
+.decabonation-container-box {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  padding: 5rem /* 80px */;
+  width: 50%;
+  min-height: 100vh;
+}
+.decabonation-box {
+  background-color: transparent;
+  margin-bottom: 1.25rem /* 20px */;
+  padding: 0.75rem /* 12px */;
+  justify-content: center;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  border-radius: 0.75rem /* 12px */;
+  display: flex;
+}
+.decabonation-box h1 {
+  font-size: 2.25rem /* 36px */;
+  line-height: 2.5rem /* 40px */;
+  padding: 0.5rem /* 8px */;
+  border-radius: 0.75rem /* 12px */;
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.container-box-select {
+  display: flex;
+  border-top-left-radius: 0.75rem /* 12px */;
+  border-top-right-radius: 0.75rem /* 12px */;
+  flex-direction: row;
+  background-color: transparent;
+  padding-left: 2.5rem /* 40px */;
+  padding-right: 2.5rem /* 40px */;
+  padding-top: 0.25rem /* 4px */;
+  justify-content: flex-end;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.container-box-select h1 {
+  padding: 0.25rem /* 4px */;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.decabonation-options-box {
+  overflow: scroll;
+  height: 24rem /* 384px */;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  border-bottom-right-radius: 0.75rem /* 12px */;
+  border-bottom-left-radius: 0.75rem /* 12px */;
+}
+.decabonation-options {
+  overflow-y: auto;
+  background-color: transparent;
+  /* padding: 0.5rem; */
+  border-radius: 0.5rem;
+  height: 20rem;
+  border-width: 2px;
+  /* margin-left: 0.25rem 4px; */
+  /* margin-right: 0.25rem 4px;  */
+
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  border-bottom-right-radius: 0.75rem /* 12px */;
+  border-bottom-left-radius: 0.75rem /* 12px */;
+}
+.decabonation-options ul {
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  flex-wrap: wrap;
+}
+.decabonation-options ul li button {
+  padding: 0.5rem /* 8px */;
+  margin: 0.75rem /* 12px */;
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),
+    0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-bg-opacity: 1;
+  background-color: rgb(201 235 210 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(20 83 45 / var(--tw-text-opacity));
+  --tw-border-opacity: 1;
+  border-color: rgb(132 204 22 / var(--tw-border-opacity));
+  border-width: 1px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem /* 16px */;
+  padding-right: 1rem /* 16px */;
+  border-radius: 1rem /* 16px */;
+}
+.tike {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.decabonation-btn-box {
+  height: 4rem /* 64px */;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 0.75rem /* 12px */;
+  padding-right: 0.75rem /* 12px */;
+  justify-content: flex-end;
+  background-color: transparent;
+  border-bottom-right-radius: 0.75rem /* 12px */;
+  border-bottom-left-radius: 0.75rem /* 12px */;
+}
+.decabonation-btn-box button {
+  padding: 0.5rem /* 8px */;
+  margin: 0.75rem /* 12px */;
+  padding-left: 1.5rem /* 24px */;
+  padding-right: 1.5rem /* 24px */;
+  border-radius: 1rem /* 16px */;
+}
+.decabonation-btn-start {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(22 101 52 / var(--tw-text-opacity));
+}
+.decabonation-btn-preview {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 240 138 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(133 77 14 / var(--tw-text-opacity));
+}

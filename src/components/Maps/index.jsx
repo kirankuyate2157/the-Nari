@@ -68,12 +68,12 @@ const Maps = () => {
         lat: 7.182018,
     };
 
-    const x = GetData(sw, ne);
-    console.log("testing Api");
+    // const x = GetData(sw, ne);
+    // console.log("testing Api");
     return (
         <>
-            <div className="p-4 container">
-                <h2 className="mb-3">Map</h2>
+            <div className="w-10/9">
+                <h2 className="">Map</h2>
                 <h1>Google Earth</h1>
                 <div>
                     <h1>
@@ -155,3 +155,4 @@ function Locate({ panTo }) {
 }
 
 export default Maps;
+

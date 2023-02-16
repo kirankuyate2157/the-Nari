@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useNavigate } from 'react-router';
 import { getUserData, logout } from '../../services/appwriteConfig';
+import Maps from '../Maps';
 import Navbar from '../Navbar';
 
 const Home = () => {
@@ -61,7 +62,7 @@ const Home = () => {
                         </ol>
                     </div>
                 </Scrollbars>
-
+                <Maps />
             </div>
         </>
     )

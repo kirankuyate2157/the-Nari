@@ -5,7 +5,8 @@ import SignUp from "./components/auth/SignUp.";
 import Auth from "./components/auth/Auth";
 import Home from "./components/Home";
 import Test from "./components/Test";
-import Maps from "./components/Maps";
+// import Maps from "./components/Maps";
+import Mymap from "./components/Maps/Mymap";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <Route path="/signin" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/test" element={<Test />} />
-      <Route path="/map" element={<Maps />} />
+      <Route path="/map" element={<Mymap />} />
     </Routes>
   );
 }

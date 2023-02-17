@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useNavigate } from 'react-router';
+import Contact from '../../Contact';
 import { getUserData, logout } from '../../services/appwriteConfig';
 import Maps from '../Maps';
+import Mymap from '../Maps/Mymap';
 import Navbar from '../Navbar';
 
 const Home = () => {
@@ -27,14 +29,14 @@ const Home = () => {
     return (
         <>
             <Navbar />
-            <div className=" flex md:flex-row flex-col justify-between ">
+            <div className=" flex md:flex-row flex-col ">
                 <aside
 
 
                     style={{ height: "fit-content" }}
                     className="hidden md:flex w-1/6  sticky   top-2 bg-bcc-400 min-h-screen justify-center shadow-xl  flex-col  gap-4"
                 >
-                    <div className="flex  flex-row w-full bg-transparent  max-h-screen  text-white pt-3 pl-5   pb-2">
+                    <div className="flex  flex-row w-full bg-transparent  text-white pt-3 pl-5   pb-2">
                         <ol className=" flex flex-col w-full pl-5 font-bold    bg-transparent text-sm justify-between ">
                             <li className="  w-full pl-5 bg-transparent hover:bg-bcc-800  text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl" >Map</li>
                             <li className="  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl" >Alert</li>
@@ -62,7 +64,9 @@ const Home = () => {
                         </ol>
                     </div>
                 </Scrollbars>
-                <Maps />
+                {/* <Maps className="" /> */}
+                {/* <Mymap /> */}
+                <Contact />
             </div>
         </>
     )

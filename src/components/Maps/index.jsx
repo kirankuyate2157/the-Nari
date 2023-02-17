@@ -5,12 +5,11 @@ import {
     Marker,
     InfoWindow,
 } from "@react-google-maps/api";
-import { GetData } from "./API";
 
 const libraries = ["places"];
 const mapContainerStyle = {
-    height: "100vh",
-    width: "100vw",
+    height: "90vh",
+    width: "100%",
 };
 const options = {
     disableDefaultUI: true,
@@ -59,36 +58,18 @@ const Maps = () => {
     if (loadError) return "Error";
     if (!isLoaded) return "Loading...";
 
-    const sw = {
-        lng: 43.760768,
-        lat: 7.323896,
-    };
-    const ne = {
-        lng: 43.645218,
-        lat: 7.182018,
-    };
-
-    // const x = GetData(sw, ne);
-    // console.log("testing Api");
     return (
         <>
-            <div className="w-10/9">
-                <h2 className="">Map</h2>
-                <h1>Google Earth</h1>
+            <div className="p-4 container ">
+                <h2 className="m-2 text-2xl flex justify-center">Whoman Safty Map</h2>
+
                 <div>
-                    <h1>
-                        Women Safety{" "}
-                        <span role="img" aria-label="tent">
-                            ⛺️
-                        </span>
-                    </h1>
-                    <Locate panTo={panTo} />*
                     <GoogleMap
                         id="map"
                         mapContainerStyle={mapContainerStyle}
                         zoom={8}
                         center={center}
-                        options={options}
+                        // options={options}
                         onClick={onMapClick}
                         onLoad={onMapLoad}
                     >
@@ -128,7 +109,7 @@ const Maps = () => {
                         ) : null}
                     </GoogleMap>
                 </div>
-            </div>
+            </div >
         </>
     );
 };

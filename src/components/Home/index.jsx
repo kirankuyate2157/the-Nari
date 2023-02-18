@@ -11,11 +11,11 @@ const Home = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState();
 
-    useEffect(() => {
-        getUserData()
-            .then((account) => setUser(account))
-            .catch((error) => navigate('/signin'))
-    })
+    // useEffect(() => {
+    //     getUserData()
+    //         .then((account) => setUser(account))
+    //         .catch((error) => navigate('/signin'))
+    // })
 
     const endSession = () => {
         const log = logout();

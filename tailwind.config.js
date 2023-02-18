@@ -3,6 +3,11 @@ module.exports = {
   content: ["./src/**/*.{jsx,html,js}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "img1": 'url("https://allswellalert.com/uploads/blog/dd82a10ef0847039e8eef524f0a88f1c.png")',
+        "img2": 'url("https://vid.alarabiya.net/images/2017/09/19/a7f51684-691d-4e1c-8779-1f54b3a61ae9/a7f51684-691d-4e1c-8779-1f54b3a61ae9_16x9_1200x676.jpg?width=801&format=jpg")',
+        "img3": 'url()'
+      },
       colors: {
         bcc: {
           50: "#e5f3ff",

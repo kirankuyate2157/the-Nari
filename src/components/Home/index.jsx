@@ -6,7 +6,6 @@ import { getUserData, logout } from "../../services/firebaseConfig.js";
 import Maps from "../Maps";
 import Mymap from "../Maps/Mymap";
 import Navbar from "../Navbar";
-import AddContact from "./AddContact";
 
 const UnIdentified = () => {
   return (
@@ -45,9 +44,9 @@ const Home = () => {
     } else if (activeTab === "contact") {
       return <Contact />;
     } else if (activeTab === "profile") {
-      return <AddContact />;
+      return <UnIdentified />;
     } else {
-      return <AddContact />;
+      return <Maps />;
     }
   };
 

@@ -55,4 +55,4 @@ export const GoggleAuth = (successCallback: string, errorCallback: string) => {
   );
   return log;
 };
-export default account;
+export { account };

@@ -6,22 +6,48 @@ import { getUserData, logout } from "../../services/firebaseConfig.js";
 import Maps from "../Maps";
 import Mymap from "../Maps/Mymap";
 import Navbar from "../Navbar";
+import AddContact from "./AddContact";
+
+const UnIdentified = () => {
+  return (
+    <>
+      <div className='w-full flex justify-center p-20'>
+        <div className='flex-col justify-center items-center '>
+          <img
+            src='https://www.read.org.np/img/coming-soon.gif'
+            alt='under dev'
+          />
+          <p className='flex  justify-center text-3xl'>
+            page under the development !
+          </p>
+        </div>
+      </div>
+    </>
+  );
+};
 
 const Home = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState();
-
-  // useEffect(() => {
-  //     getUserData()
-  //         .then((account) => setUser(account))
-  //         .catch((error) => navigate('/signin'))
-  // })
-
+  const [activeTab, setActiveTab] = useState("map");
   const endSession = () => {
     const log = logout();
     if (log) {
       alert("LogOut successfully !");
       navigate("/signin");
+    }
+  };
+  const Tabs = () => {
+    if (activeTab === "map") {
+      return <Maps />;
+    } else if (activeTab === "alert") {
+      return <Mymap />;
+    } else if (activeTab === "contact") {
+      return <Contact />;
+    } else if (activeTab === "profile") {
+      return <AddContact />;
+    } else {
+      return <AddContact />;
     }
   };
 
@@ -35,16 +61,52 @@ const Home = () => {
         >
           <div className='flex  flex-row w-full bg-transparent  text-white pt-3 pl-5   pb-2'>
             <ol className=' flex flex-col w-full pl-5 font-bold    bg-transparent text-sm justify-between '>
-              <li className='  w-full pl-5 bg-transparent hover:bg-bcc-800  text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl'>
+              <li
+                className={`  w-full pl-5 bg-transparent hover:bg-bcc-800 ${
+                  activeTab === "map"
+                    ? "bg-bcc-800 text-red-800"
+                    : "bg-transparent"
+                } text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl`}
+                onClick={() => {
+                  setActiveTab("map");
+                }}
+              >
                 Map
               </li>
-              <li className='  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl'>
+              <li
+                className={`  w-full pl-5 bg-transparent hover:bg-bcc-800 ${
+                  activeTab === "alert"
+                    ? "bg-bcc-800 text-red-800"
+                    : "bg-transparent"
+                } text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl`}
+                onClick={() => {
+                  setActiveTab("alert");
+                }}
+              >
                 Alert
               </li>
-              <li className='  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl'>
+              <li
+                className={`  w-full pl-5 bg-transparent hover:bg-bcc-800 ${
+                  activeTab === "contact"
+                    ? "bg-bcc-800 text-red-800"
+                    : "bg-transparent"
+                } text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl`}
+                onClick={() => {
+                  setActiveTab("contact");
+                }}
+              >
                 Contact
               </li>
-              <li className='  w-full pl-5 bg-transparent hover:bg-bcc-800 text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl'>
+              <li
+                className={`  w-full pl-5 bg-transparent hover:bg-bcc-800 ${
+                  activeTab === "profile"
+                    ? "bg-bcc-800 text-red-800"
+                    : "bg-transparent"
+                } text-gray-900 hover:text-white my-3 p-3 rounded-l-xl text-xl`}
+                onClick={() => {
+                  setActiveTab("profile");
+                }}
+              >
                 Profile
               </li>
               <li
@@ -56,40 +118,7 @@ const Home = () => {
             </ol>
           </div>
         </aside>
-
-        <Scrollbars className='md:hidden bg-transparent'>
-          <div className='md:hidden  bg-transparent bg-bcc-400 sticky'>
-            <ol className=' flex  w-full pl-5 font-semibold  text-md  md:justify-between '>
-              <li className='  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl'>
-                Early Life
-              </li>
-              <li className='  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl'>
-                Career
-              </li>
-              <li className='  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl'>
-                Musical Style
-              </li>
-              <li className='  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl'>
-                Personal Life
-              </li>
-              <li className='  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl'>
-                New Worth
-              </li>
-              <li className='  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl'>
-                Controversy
-              </li>
-              <li className='  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl'>
-                Awards
-              </li>
-              <button className='  w-full pl-5 hover:bg-gray-900 text-gray-900 hover:text-white  p-3 rounded-xl text-xl'>
-                Facts
-              </button>
-            </ol>
-          </div>
-        </Scrollbars>
-        {/* <Maps className="" /> */}
-        {/* <Mymap /> */}
-        <Contact />
+        <Tabs />
       </div>
     </>
   );

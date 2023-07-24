@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -12,11 +13,17 @@ const firebaseConfig = {
   apiKey: "AIzaSyANyeEhKnXwF8rKvlgb3wpaYUGNZY7ap3I",
   authDomain: "nari-376818.firebaseapp.com",
   projectId: "nari-376818",
+  storageBucket: "nari-376818.appspot.com",
+  messagingSenderId: "679667160213",
+  appId: "1:679667160213:web:ba914ebd496391097df79c",
+  measurementId: "G-S0RDGLYE5F",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
+
 // const analytics = getAnalytics(app);
 const register = async (email, password, displayName) => {
   try {
@@ -74,6 +81,5 @@ const GoogleAuth = () => {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider);
 };
-// const db = firestore();
 
-export { getUserData, register, login, logout, GoogleAuth };
+export { auth, db, getUserData, register, login, logout, GoogleAuth };

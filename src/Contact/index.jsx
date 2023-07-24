@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db, getUserData } from "./../services/firebaseConfig";
 
 import Tips from "./Tips";
@@ -10,10 +10,10 @@ const Contact = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
+  const user = getUserData().uid;
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = getUserData().uid;
+
     await addContactToFirestore(user, name, phoneNumber);
     setName("");
     setPhoneNumber("");
@@ -31,6 +31,7 @@ const Contact = () => {
     } catch (error) {
       console.error("Error adding contact:", error);
     }
+    setIsOpen(false);
   };
 
   const handleCopyClick = (id) => {
@@ -39,12 +40,12 @@ const Contact = () => {
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);
   };
-
   useEffect(() => {
     const fetchContacts = async () => {
       try {
         const contactsRef = collection(db, "contacts");
-        const querySnapshot = await getDocs(contactsRef);
+        const q = query(contactsRef, where("uid", "==", user));
+        const querySnapshot = await getDocs(q);
         const contactsData = querySnapshot.docs.map((doc) => doc.data());
         setContacts(contactsData);
       } catch (error) {
